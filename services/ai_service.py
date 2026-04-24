@@ -28,7 +28,7 @@ def get_ai_response(messages):
 
         # 🔹 Check response status
         if not response.ok:
-    return "AI service unavailable. Try again."
+            return "AI service unavailable. Try again."
 
         result = response.json()
 
