@@ -16,8 +16,10 @@ def get_ai_response(messages):
     }
 
     data = {
-        "model": "deepseek/deepseek-chat",
-        "messages": messages
+        "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+        "messages": messages,
+        "temperature": 0.7,
+    "max_tokens": 500
     }
 
     try:
@@ -25,8 +27,8 @@ def get_ai_response(messages):
         response = requests.post(url, headers=headers, json=data, timeout=10)
 
         # 🔹 Check response status
-        if response.status_code != 200:
-            return "Sorry, AI service is temporarily unavailable."
+        if not response.ok:
+    return "AI service unavailable. Try again."
 
         result = response.json()
 
@@ -35,7 +37,10 @@ def get_ai_response(messages):
             return "Sorry, something went wrong. Please try again."
 
         # 🔹 Extract clean response
-        return result["choices"][0]["message"]["content"].strip()
+        try:
+             return result["choices"][0]["message"]    ["content"].strip()
+        except:
+          return "AI response error. Please try again."
 
     except requests.exceptions.Timeout:
         return "Request timed out. Please try again."
