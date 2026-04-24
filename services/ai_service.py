@@ -16,7 +16,7 @@ def get_ai_response(messages):
     }
 
     data = {
-        "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+        "model": "openrouter/auto",
         "messages": messages,
         "temperature": 0.7,
     "max_tokens": 500
@@ -28,7 +28,7 @@ def get_ai_response(messages):
 
         # 🔹 Check response status
         if not response.ok:
-            return "AI service unavailable. Try again."
+             return "AI service unavailable. Try again."
 
         result = response.json()
 
