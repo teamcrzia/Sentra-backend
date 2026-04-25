@@ -18,8 +18,7 @@ def get_ai_response(messages):
     data = {
         "model": "inclusionai/ling-2.6-flash:free",
         "messages": messages,
-        "temperature": 0.7,
-    "max_tokens": 1500
+        "temperature": 0
     }
 
     try:
@@ -74,7 +73,9 @@ Message:
 {message}
 """
 
-    messages = [{"role": "system", "content": prompt}]
+    messages = [
+    {"role": "user", "content": prompt}
+]
 
     response = get_ai_response(messages)
 
