@@ -16,15 +16,15 @@ def get_ai_response(messages):
     }
 
     data = {
-        "model": "openrouter/auto",
+        "model": "inclusionai/ling-2.6-flash:free",
         "messages": messages,
         "temperature": 0.7,
-    "max_tokens": 500
+    "max_tokens": 1500
     }
 
     try:
         # 🔹 API call with timeout
-        response = requests.post(url, headers=headers, json=data, timeout=10)
+        response = requests.post(url, headers=headers, json=data, timeout=15)
 
         # 🔹 Check response status
         if not response.ok:
@@ -38,7 +38,7 @@ def get_ai_response(messages):
 
         # 🔹 Extract clean response
         try:
-             return result["choices"][0]["message"]    ["content"].strip()
+             return result["choices"][0]["message"]["content"].strip()
         except:
           return "AI response error. Please try again."
 
