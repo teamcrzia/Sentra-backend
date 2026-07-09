@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv("BLUESMINDS_API_KEY")
+API_KEY = os.getenv("BLUESMIND_API_KEY")
 URL = os.getenv("BLUESMINDS_URL")
 MODEL = os.getenv("MODEL_NAME")
 
